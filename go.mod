@@ -3,14 +3,15 @@ module github.com/cguertin14/ddns
 go 1.19
 
 require (
+	github.com/cguertin14/logger v1.0.6
 	github.com/cloudflare/cloudflare-go v0.58.1
 	github.com/google/go-github/v43 v43.0.0
+	github.com/google/go-github/v49 v49.1.0
 	github.com/spf13/viper v1.14.0
 	golang.org/x/oauth2 v0.0.0-20221014153046-6fdb5e3db783
 )
 
 require (
-	github.com/cguertin14/logger v1.0.6 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
