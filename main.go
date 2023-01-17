@@ -39,11 +39,15 @@ func main() {
 	})
 
 	// run app
-	if err := app.Run(ctx, *cfg); err != nil {
+	report, err := app.Run(ctx, *cfg)
+	if err != nil {
 		appLogger.Fatalf("failed to run app: %s\n", err)
 	}
 
 	// success message
-	// TODO: Add wether or not DNS was changed
-	appLogger.Infoln("Successfully ran app.")
+	if report.DnsChanged {
+		appLogger.Infof("Successfully updated DNS Record %q to %q.\n", cfg.RecordName, report.NewIP)
+	} else {
+		appLogger.Infoln("DNS record unchanged.")
+	}
 }
