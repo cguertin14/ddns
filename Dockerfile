@@ -2,7 +2,9 @@
 FROM golang:1.19.5-alpine AS builder
 
 # make image public
-LABEL org.opencontainers.image.source="https://github.com/cguertin14/ddns"
+LABEL org.opencontainers.image.source=https://github.com/cguertin14/ddns
+LABEL org.opencontainers.image.description="ddns container image"
+LABEL org.opencontainers.image.licenses=Apache
 LABEL maintainer="Charles Guertin <charlesguertin@live.ca>"
 
 ARG TARGETOS
