@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: ddns
+
+commonLabels:
+  app.kubernetes.io/name: ddns
+
+resources:
+- namespace.yml
+- cronjob.yml
+
+# Note: Cloudflare & Github tokens
+# not defined here.
+configMapGenerator:
+- name: app-config
+  literals:
+  - ZONE_NAME=<CHANGE_ME>
+  - RECORD_NAME=<CHANGE_ME>
+  - UPDATE_GITHUB_TERRAFORM=<CHANGE_ME>
+  - GITHUB_BASE_BRANCH=<CHANGE_ME>
+  - GITHUB_REPO_OWNER=<CHANGE_ME>
+  - GITHUB_REPO_NAME=<CHANGE_ME>
+  - GITHUB_FILE_PATH=<CHANGE_ME>
+
+images:
+# Needs to be updated on each new release
+- name: ghcr.io/cguertin14/ddns
+  newTag: v1.0.0

@@ -15,6 +15,7 @@ var (
 		"CLOUDFLARE_TOKEN",
 		"RECORD_NAME",
 		"ZONE_NAME",
+		"LOG_LEVEL",
 	}
 )
 
@@ -33,16 +34,8 @@ type Config struct {
 
 func Load() (*Config, error) {
 	v := viper.New()
-
-	// TODO: Uncomment when pushing
-	// v.AutomaticEnv()
-	// if err := v.MustBindEnv(envVars...); err != nil {
-	// 	return nil, err
-	// }
-
-	v.SetConfigFile(".env")
-	v.SetConfigType("env")
-	if err := v.ReadInConfig(); err != nil {
+	v.AutomaticEnv()
+	if err := v.BindEnv(envVars...); err != nil {
 		return nil, err
 	}
 

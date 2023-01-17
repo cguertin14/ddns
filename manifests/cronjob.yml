@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ddns-cron
+spec:
+  # Cronjob will run once a day to check for updates.
+  schedule: '@daily'
+  successfulJobsHistoryLimit: 7
+  failedJobsHistoryLimit: 7
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ddns
+            image: ghcr.io/cguertin14/ddns
+            envFrom:
+            - configMapRef:
+                name: app-config
+            env:
+            # Warning: You need to define this secret in your config.
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: GITHUB_TOKEN
+                  name: tokens
+            # Warning: You need to define this secret in your config.
+            - name: CLOUDFLARE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: CLOUDFLARE_TOKEN
+                  name: tokens
+            resources:
+              limits:
+                cpu: 200m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 64Mi
+          restartPolicy: OnFailure
