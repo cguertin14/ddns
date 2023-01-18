@@ -16,7 +16,7 @@ import (
 	"github.com/cguertin14/ddns/pkg/config"
 	legacy "github.com/cguertin14/ddns/pkg/github"
 	legacy_cf "github.com/cloudflare/cloudflare-go"
-	"github.com/google/go-github/v43/github"
+	"github.com/google/go-github/v49/github"
 )
 
 var (
@@ -65,7 +65,6 @@ func (c Client) Run(ctx context.Context, cfg config.Config) (RunReport, error) {
 	if record.Content != newIP {
 		// step 1: update dns record
 		if err := c.cloudflare.UpdateDNSRecord(ctx, identifier, legacy_cf.UpdateDNSRecordParams{
-			ZoneID:  zoneID,
 			Name:    cfg.RecordName,
 			ID:      record.ID,
 			Content: newIP,

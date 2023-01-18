@@ -19,7 +19,8 @@ func main() {
 
 	// initialize logger
 	appLogger := logger.Initialize(logger.Config{
-		Level: cfg.LogLevel,
+		Level:     cfg.LogLevel,
+		Formatter: logger.ServiceFormatter,
 	})
 	ctx := context.WithValue(context.Background(), logger.CtxKey, appLogger)
 
