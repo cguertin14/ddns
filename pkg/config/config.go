@@ -5,16 +5,19 @@ import (
 )
 
 var (
-	envVars = []string{
+	mustHaveEnvVars = []string{
+		"CLOUDFLARE_TOKEN",
+		"RECORD_NAME",
+		"ZONE_NAME",
+	}
+
+	otherEnvVars = []string{
 		"UPDATE_GITHUB_TERRAFORM",
 		"GITHUB_BASE_BRANCH",
 		"GITHUB_FILE_PATH",
 		"GITHUB_REPO_OWNER",
 		"GITHUB_REPO_NAME",
 		"GITHUB_TOKEN",
-		"CLOUDFLARE_TOKEN",
-		"RECORD_NAME",
-		"ZONE_NAME",
 		"LOG_LEVEL",
 	}
 )
@@ -37,7 +40,10 @@ func Load() (*Config, error) {
 	v.AutomaticEnv()
 
 	// set fields from env vars
-	for _, env := range envVars {
+	for _, env := range mustHaveEnvVars {
+		v.MustBindEnv(env)
+	}
+	for _, env := range otherEnvVars {
 		if err := v.BindEnv(env); err != nil {
 			return nil, err
 		}
