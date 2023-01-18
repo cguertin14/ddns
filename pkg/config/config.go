@@ -35,8 +35,12 @@ type Config struct {
 func Load() (*Config, error) {
 	v := viper.New()
 	v.AutomaticEnv()
-	if err := v.BindEnv(envVars...); err != nil {
-		return nil, err
+
+	// set fields from env vars
+	for _, env := range envVars {
+		if err := v.BindEnv(env); err != nil {
+			return nil, err
+		}
 	}
 
 	cfg := &Config{}
