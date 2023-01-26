@@ -1,7 +1,7 @@
 # Kubernetes Manifests
 
 Here reside kubernetes manifests to use ddns in your cluster. 
-Since `ddns` is not web service/microservice but rather a job in itself, it is defined here as  a cronjob that runs `daily`.
+Since `ddns` is not web service/microservice but rather a job in itself, it is defined here as  a cronjob that runs `hourly`.
 
 ## Tokens Secret
 
