@@ -4,9 +4,10 @@ metadata:
   name: ddns-cron
 spec:
   # Cronjob will run once a day to check for updates.
-  schedule: '@daily'
-  successfulJobsHistoryLimit: 7
-  failedJobsHistoryLimit: 7
+  schedule: '@hourly'
+  # keep last 48 hours worth of jobs.
+  successfulJobsHistoryLimit: 48
+  failedJobsHistoryLimit: 48
   jobTemplate:
     spec:
       template:
