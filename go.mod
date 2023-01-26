@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/cloudflare/cloudflare-go v0.59.0
-	github.com/google/go-github/v43 v43.0.0
+	github.com/google/go-github/v50 v50.0.0
 	github.com/google/go-github/v49 v49.1.0
 	github.com/spf13/viper v1.15.0
 	golang.org/x/oauth2 v0.4.0
