@@ -27,8 +27,5 @@ RUN go build -o ./ddns .
 
 # Step 2 - import necessary files to run program.
 FROM gcr.io/distroless/base-debian11:nonroot
-
-COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /app/ddns /ddns
-
 ENTRYPOINT ["/ddns"]
