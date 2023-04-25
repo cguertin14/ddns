@@ -14,6 +14,6 @@ func (c Client) ListDNSRecords(ctx context.Context, rc *cloudflare.ResourceConta
 	return c.api.ListDNSRecords(ctx, rc, params)
 }
 
-func (c Client) UpdateDNSRecord(ctx context.Context, rc *cloudflare.ResourceContainer, params cloudflare.UpdateDNSRecordParams) error {
+func (c Client) UpdateDNSRecord(ctx context.Context, rc *cloudflare.ResourceContainer, params cloudflare.UpdateDNSRecordParams) (cloudflare.DNSRecord, error) {
 	return c.api.UpdateDNSRecord(ctx, rc, params)
 }
