@@ -1,11 +1,14 @@
 module github.com/cguertin14/ddns
 
-go 1.19
+go 1.21
+
+toolchain go1.22.1
 
 require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/cloudflare/cloudflare-go v0.66.0
 	github.com/google/go-github/v52 v52.0.0
+	github.com/google/go-github/v60 v60.0.0
 	github.com/spf13/viper v1.15.0
 	golang.org/x/oauth2 v0.7.0
 )
