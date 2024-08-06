@@ -3,11 +3,11 @@ kind: CronJob
 metadata:
   name: ddns-cron
 spec:
-  # Cronjob will run once a day to check for updates.
-  schedule: '@hourly'
-  # keep last 48 hours worth of jobs.
-  successfulJobsHistoryLimit: 48
-  failedJobsHistoryLimit: 48
+  # Cronjob will run every 5 minutes to stay alert in case of IP change.
+  schedule: '*/5 * * * *'
+  # keep last 12 hours worth of jobs.
+  successfulJobsHistoryLimit: 144
+  failedJobsHistoryLimit: 144
   jobTemplate:
     spec:
       template:
