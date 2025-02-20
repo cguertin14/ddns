@@ -94,7 +94,7 @@ func (c Client) Run(ctx context.Context, cfg config.Config) (RunReport, error) {
 }
 
 func getPublicIP() (string, error) {
-	res, err := http.Get("https://ifconfig.me")
+	res, err := http.Get("https://api.ipify.org")
 	if err != nil {
 		return "", err
 	}
