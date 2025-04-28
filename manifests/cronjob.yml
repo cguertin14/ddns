@@ -12,6 +12,7 @@ spec:
     spec:
       template:
         spec:
+          backoffLimit: 25 # retry 25 times before failing
           containers:
           - name: ddns
             image: ghcr.io/cguertin14/ddns
@@ -33,9 +34,8 @@ spec:
                   name: tokens
             resources:
               limits:
-                cpu: 200m
                 memory: 128Mi
               requests:
                 cpu: 100m
-                memory: 64Mi
+                memory: 128Mi
           restartPolicy: OnFailure
