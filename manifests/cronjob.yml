@@ -10,9 +10,9 @@ spec:
   failedJobsHistoryLimit: 144
   jobTemplate:
     spec:
+      backoffLimit: 25 # retry 25 times before failing
       template:
         spec:
-          backoffLimit: 25 # retry 25 times before failing
           containers:
           - name: ddns
             image: ghcr.io/cguertin14/ddns
