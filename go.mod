@@ -5,11 +5,11 @@ go 1.24
 require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/cloudflare/cloudflare-go v0.115.0
-	github.com/cloudflare/cloudflare-go/v4 v4.2.0
+	github.com/cloudflare/cloudflare-go/v4 v4.3.0
 	github.com/google/go-github/v52 v52.0.0
 	github.com/google/go-github/v71 v71.0.0
 	github.com/spf13/viper v1.20.1
-	golang.org/x/oauth2 v0.29.0
+	golang.org/x/oauth2 v0.30.0
 )
 
 require (
