@@ -7,7 +7,6 @@ import (
 	"github.com/cguertin14/ddns/pkg/cloudflare"
 	"github.com/cguertin14/ddns/pkg/config"
 	"github.com/cguertin14/ddns/pkg/ddns"
-	gh "github.com/cguertin14/ddns/pkg/github"
 	"github.com/cguertin14/logger"
 )
 
@@ -30,13 +29,9 @@ func main() {
 		appLogger.Fatalln(err)
 	}
 
-	// github client
-	ghClient := gh.NewClient(ctx, cfg.GithubToken)
-
 	// initialize app
 	app := ddns.NewClient(ddns.Dependencies{
 		Cloudflare: cfClient,
-		Github:     ghClient,
 	})
 
 	// run app
