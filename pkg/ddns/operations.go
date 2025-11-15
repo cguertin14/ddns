@@ -3,14 +3,15 @@ package ddns
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 
 	_ "embed"
 
 	"github.com/cguertin14/ddns/pkg/config"
 	"github.com/cguertin14/logger"
-	legacy_cf "github.com/cloudflare/cloudflare-go"
+	cloudflare "github.com/cloudflare/cloudflare-go/v6"
+	"github.com/cloudflare/cloudflare-go/v6/dns"
 )
 
 type RunReport struct {
@@ -26,15 +27,17 @@ type PRReport struct {
 // returns wether or not DNS changed
 func (c Client) Run(ctx context.Context, cfg config.Config) (RunReport, error) {
 	// fetch zone ID from name
-	zoneID, err := c.cloudflare.ZoneIDByName(cfg.ZoneName)
+	zoneID, err := c.cloudflare.ZoneIDByName(ctx, cfg.ZoneName)
 	if err != nil {
 		return RunReport{DnsChanged: false}, fmt.Errorf("failed to fetch zone ID: %s", err)
 	}
-	identifier := legacy_cf.ZoneIdentifier(zoneID)
 
 	// list dns records and find the one needed
-	records, _, err := c.cloudflare.ListDNSRecords(ctx, identifier, legacy_cf.ListDNSRecordsParams{
-		Name: fmt.Sprintf("%s.%s", cfg.RecordName, cfg.ZoneName),
+	fullRecordName := fmt.Sprintf("%s.%s", cfg.RecordName, cfg.ZoneName)
+	records, err := c.cloudflare.ListDNSRecords(ctx, zoneID, dns.RecordListParams{
+		Name: cloudflare.F(dns.RecordListParamsName{
+			Exact: cloudflare.F(fullRecordName),
+		}),
 	})
 	if err != nil {
 		return RunReport{DnsChanged: false}, fmt.Errorf("failed to fetch dns records: %s", err)
@@ -55,11 +58,13 @@ func (c Client) Run(ctx context.Context, cfg config.Config) (RunReport, error) {
 	record := records[0]
 	if record.Content != newIP {
 		// step 1: update dns record
-		if _, err := c.cloudflare.UpdateDNSRecord(ctx, identifier, legacy_cf.UpdateDNSRecordParams{
-			Name:    cfg.RecordName,
-			ID:      record.ID,
-			Content: newIP,
-			Type:    "A",
+		if _, err := c.cloudflare.UpdateDNSRecord(ctx, zoneID, record.ID, dns.RecordUpdateParams{
+			Body: dns.ARecordParam{
+				Name:    cloudflare.F(fullRecordName),
+				Content: cloudflare.F(newIP),
+				Type:    cloudflare.F(dns.ARecordTypeA),
+				TTL:     cloudflare.F(dns.TTL(record.TTL)),
+			},
 		}); err != nil {
 			return RunReport{DnsChanged: false}, fmt.Errorf("failed to update dns record: %s", err)
 		}
@@ -80,7 +85,7 @@ func getPublicIP() (string, error) {
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return "", err
 	}
