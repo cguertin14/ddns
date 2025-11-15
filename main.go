@@ -24,10 +24,7 @@ func main() {
 	ctx := context.WithValue(context.Background(), logger.CtxKey, appLogger)
 
 	// cloudflare client
-	cfClient, err := cloudflare.NewClient(cfg.CloudflareToken)
-	if err != nil {
-		appLogger.Fatalln(err)
-	}
+	cfClient := cloudflare.NewClient(cfg.CloudflareToken)
 
 	// initialize app
 	app := ddns.NewClient(ddns.Dependencies{
