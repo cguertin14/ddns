@@ -1,5 +1,5 @@
 # Step 1 - compile code binary
-FROM golang:1.24.2-alpine AS builder
+FROM golang:1.25.4-alpine AS builder
 
 # make image public
 LABEL org.opencontainers.image.source=https://github.com/cguertin14/ddns
