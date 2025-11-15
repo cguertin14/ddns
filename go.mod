@@ -5,6 +5,7 @@ go 1.24
 require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/cloudflare/cloudflare-go v0.116.0
+	github.com/cloudflare/cloudflare-go/v6 v6.2.0
 	github.com/spf13/viper v1.21.0
 )
 
