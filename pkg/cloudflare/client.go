@@ -11,7 +11,7 @@ import (
 // Interface is an interface for the
 // cloudflare SDK.
 type Interface interface {
-	ZoneIDByName(name string) (string, error)
+	ZoneIDByName(ctx context.Context, name string) (string, error)
 	ListDNSRecords(ctx context.Context, zoneID string, params dns.RecordListParams) ([]dns.RecordResponse, error)
 	UpdateDNSRecord(ctx context.Context, zoneID string, recordID string, params dns.RecordUpdateParams) (dns.RecordResponse, error)
 }

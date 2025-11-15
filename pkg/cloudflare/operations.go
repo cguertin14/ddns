@@ -9,9 +9,7 @@ import (
 	"github.com/cloudflare/cloudflare-go/v6/zones"
 )
 
-func (c Client) ZoneIDByName(name string) (string, error) {
-	ctx := context.Background()
-
+func (c Client) ZoneIDByName(ctx context.Context, name string) (string, error) {
 	// List zones with a filter on the name
 	page, err := c.api.Zones.List(ctx, zones.ZoneListParams{
 		Name: cloudflare.F(name),

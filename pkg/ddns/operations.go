@@ -27,7 +27,7 @@ type PRReport struct {
 // returns wether or not DNS changed
 func (c Client) Run(ctx context.Context, cfg config.Config) (RunReport, error) {
 	// fetch zone ID from name
-	zoneID, err := c.cloudflare.ZoneIDByName(cfg.ZoneName)
+	zoneID, err := c.cloudflare.ZoneIDByName(ctx, cfg.ZoneName)
 	if err != nil {
 		return RunReport{DnsChanged: false}, fmt.Errorf("failed to fetch zone ID: %s", err)
 	}
