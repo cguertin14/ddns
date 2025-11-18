@@ -21,4 +21,4 @@ configMapGenerator:
 images:
 # Needs to be updated on each new release
 - name: ghcr.io/cguertin14/ddns
-  newTag: v1.6.1
+  newTag: v1.6.2
