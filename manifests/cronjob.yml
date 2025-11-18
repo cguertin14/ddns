@@ -21,12 +21,6 @@ spec:
                 name: app-config
             env:
             # Warning: You need to define this secret in your config.
-            - name: GITHUB_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: GITHUB_TOKEN
-                  name: tokens
-            # Warning: You need to define this secret in your config.
             - name: CLOUDFLARE_TOKEN
               valueFrom:
                 secretKeyRef:
