@@ -52,11 +52,12 @@ func (c Client) Run(ctx context.Context, cfg config.Config) (RunReport, error) {
 		return RunReport{DnsChanged: false}, fmt.Errorf("failed to fetch public IP: %s", err)
 	}
 	logs := logger.NewFromContextOrDefault(ctx)
-	logs.Infof("Current IP is %s", newIP)
+	logs.Infof("current ip address is %s", newIP)
 
 	// check if IP changed and act if it did
 	record := records[0]
 	if record.Content != newIP {
+		logs.Warnf("ip address has changed... updating it to %v", newIP)
 		// step 1: update dns record
 		if _, err := c.cloudflare.UpdateDNSRecord(ctx, zoneID, record.ID, dns.RecordUpdateParams{
 			Body: dns.ARecordParam{

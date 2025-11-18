@@ -13,7 +13,7 @@ import (
 func main() {
 	cfg, err := config.Load()
 	if err != nil {
-		log.Fatalf("failed to load config: %s\n", err)
+		log.Fatalf("failed to load config: %s", err)
 	}
 
 	// initialize logger
@@ -34,13 +34,13 @@ func main() {
 	// run app
 	report, err := app.Run(ctx, *cfg)
 	if err != nil {
-		appLogger.Fatalf("failed to run app: %s\n", err)
+		appLogger.Fatalf("failed to run app: %s", err)
 	}
 
 	// success message
 	if report.DnsChanged {
-		appLogger.Infof("Successfully updated DNS Record %q to %q.\n", cfg.RecordName, report.NewIP)
+		appLogger.Infof("successfully updated dns Record %v to %v", cfg.RecordName, report.NewIP)
 	} else {
-		appLogger.Infoln("DNS record unchanged.")
+		appLogger.Infoln("dns record unchanged")
 	}
 }
