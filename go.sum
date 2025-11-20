@@ -2,6 +2,8 @@ github.com/cguertin14/logger v1.0.6 h1:Pc+4um0QJpXSivKofBlJ471xhzVAr3Frn5wWPgN1o
 github.com/cguertin14/logger v1.0.6/go.mod h1:HL+/DPVELHq4pGsejTJctxjwwKlTJaE3O4bbdSzOK6k=
 github.com/cloudflare/cloudflare-go/v6 v6.2.0 h1:VuJAXeVlnftU/XIcAi/xXwEkU/TOaHhmM68HKVpyLD8=
 github.com/cloudflare/cloudflare-go/v6 v6.2.0/go.mod h1:Lj3MUqjvKctXRpdRhLQxZYRrNZHuRs0XYuH8JtQGyoI=
+github.com/cloudflare/cloudflare-go/v6 v6.3.0 h1:6oL/iTOv1fYe6nVT14gRQWp49EyJxVe+OPrO92c/mmE=
+github.com/cloudflare/cloudflare-go/v6 v6.3.0/go.mod h1:Lj3MUqjvKctXRpdRhLQxZYRrNZHuRs0XYuH8JtQGyoI=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/frankban/quicktest v1.14.6 h1:7Xjx+VpznH+oBnejlPUj8oUpdxnVs4f8XU8WnHkI4W8=
