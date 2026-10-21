@@ -1,10 +1,11 @@
 module github.com/cguertin14/ddns
 
-go 1.24
+go 1.26
 
 require (
 	github.com/cguertin14/logger v1.0.6
-	github.com/cloudflare/cloudflare-go/v6 v6.2.0
+	github.com/cloudflare/cloudflare-go/v6 v6.10.0
+	github.com/cloudflare/cloudflare-go/v7 v7.13.1
 	github.com/spf13/viper v1.21.0
 )
 
